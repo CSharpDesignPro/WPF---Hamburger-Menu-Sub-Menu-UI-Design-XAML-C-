@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--// List of Fonts //-->
+
+    <FontFamily x:Key="FontStyle_1">Fonts/#Saira SemiBold</FontFamily>
+    <FontFamily x:Key="FontStyle_2">Fonts/#Open Sans SemiBold</FontFamily>
+
+</ResourceDictionary>

@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="Hamburger_Menu.TrackOne"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Hamburger_Menu"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <UserControl.Resources>
+
+        <Storyboard x:Key="TrackOne_Open">
+
+            <DoubleAnimation Storyboard.TargetName="T1_Open"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             BeginTime="0:0:0"
+                             Duration="0:0:0.1"
+                             AutoReverse="True"
+                             RepeatBehavior="3x">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="TrackOne_Close">
+
+            <DoubleAnimation Storyboard.TargetName="T1_Close"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             BeginTime="0:0:0"
+                             Duration="0:0:0.1"
+                             AutoReverse="True"
+                             RepeatBehavior="3x">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+        </Storyboard>
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Border x:Name="Submenu_Out"
+                Width="270"
+                Height="35"
+                Background="#353535"
+                CornerRadius="10"
+                BorderBrush="#FF8C00"
+                BorderThickness="5,0,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="255,30,0,0">
+
+            <Grid>
+
+                <Border Height="32"
+                        Width="205"
+                        Background="#FF8C00"
+                        Margin="0,-66,0,0"
+                        BorderBrush="#FFFFFF"
+                        BorderThickness="4,0,4,0" />
+
+                <Image x:Name="T1_Close"
+                       Source="{StaticResource ST_1}"
+                       Stretch="None"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0" />
+
+                <TextBlock FontSize="12"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource FontStyle_1}"
+                           Foreground="#FFFFFF"
+                           HorizontalAlignment="Left"
+                           Margin="20,0,0,0"
+                           Text="MENU TRACK - I" />
+            </Grid>
+
+            <Border.RenderTransform>
+                <TranslateTransform X="0"
+                                    Y="-75" />
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Submenu_Out"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                                             From="-75"
+                                             To="0"
+                                             BeginTime="0:0:1.5"
+                                             Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+        </Border>
+
+        <Border x:Name="Submenu_In"
+                Width="270"
+                Height="35"
+                Background="#353535"
+                CornerRadius="10"
+                BorderBrush="#FF8C00"
+                BorderThickness="0,0,5,0"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="255,0,0,30">
+
+            <Grid>
+
+                <Border Height="32"
+                        Width="205"
+                        Background="#FF8C00"
+                        Margin="0,0,0,-67"
+                        BorderBrush="#FFFFFF"
+                        BorderThickness="4,0,4,0" />
+
+                <Image x:Name="T1_Open"
+                       Source="{StaticResource ST_2}"
+                       Stretch="None"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0">
+
+                </Image>
+
+                <TextBlock FontSize="12"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource FontStyle_1}"
+                           Foreground="#FFFFFF"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,20,0"
+                           Text="MENU TRACK - I" />
+            </Grid>
+
+            <Border.RenderTransform>
+                <TranslateTransform X="0"
+                                    Y="75"></TranslateTransform>
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Submenu_In"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                                             From="75"
+                                             To="0"
+                                             BeginTime="0:0:1.5"
+                                             Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+        </Border>
+
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,572 @@
+﻿<UserControl x:Class="Hamburger_Menu.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Hamburger_Menu"
+             mc:Ignorable="d"
+             d:DesignHeight="700"
+             d:DesignWidth="980">
+
+    <UserControl.Resources>
+
+        <!--// Reset Control Button Style Template //-->
+
+        <Style x:Key="ResetBtnStyle"
+               TargetType="Button">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="border"
+                                Background="#353535"
+                                CornerRadius="7"
+                                BorderThickness="0">
+                            <ContentPresenter />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="#5F5F5F" />
+
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="#555555" />
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+
+    <Grid>
+
+        <!--// Active Menu Indicator //-->
+
+        <Border x:Name="Menu_Status"
+                Width="210"
+                Height="60"
+                Background="#444444"
+                CornerRadius="10"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="20,20,0,0">
+
+            <Border.RenderTransform>
+
+                <TranslateTransform X="0"
+                                    Y="-100" />
+
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Menu_Status"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                                             From="-200"
+                                             To="0"
+                                             BeginTime="0:0:0.4"
+                                             Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <Grid>
+
+                <!--// Panel Name //-->
+
+                <Border Height="20"
+                        Width="100"
+                        Background="#444444"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        CornerRadius="5,5,0,0"
+                        Margin="0,2,0,0">
+
+                    <Grid>
+
+                        <TextBlock  Text="MENU STATUS"
+                                    FontSize="12"
+                                    FontFamily="{StaticResource FontStyle_1}"
+                                    Foreground="#FFFFFF"
+                                    TextAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,1,0,0" />
+                    </Grid>
+
+                </Border>
+
+
+                <Grid>
+
+                    <Border Height="30"
+                            Background="#272727"
+                            Width="95"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            CornerRadius="3,10,10,10"
+                            Margin="6,0,0,5">
+
+                        <Grid>
+
+                            <Rectangle x:Name="SideBar_Active"
+                                       Height="4"
+                                       Width="20"
+                                       Margin="0,0,0,5"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Fill="#FF8C00"
+                                       RadiusX="2"
+                                       RadiusY="2" />
+
+                            <TextBlock x:Name="SideBarText"
+                                       Text="SIDE BAR"
+                                       Foreground="#FFFFFF"
+                                       FontSize="12"
+                                       FontFamily="{StaticResource FontStyle_1}"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8" />
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+                <Grid>
+
+                    <Border Height="30"
+                            Background="#272727"
+                            Width="95"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            CornerRadius="10,3,10,10"
+                            Margin="0,0,6,5">
+
+                        <Grid>
+
+                            <Rectangle x:Name="SidePanel_Active"
+                                       Height="4"
+                                       Width="20"
+                                       Margin="0,0,0,5"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Fill="#FF8C00"
+                                       RadiusX="2"
+                                       RadiusY="2" />
+
+                            <TextBlock x:Name="SidePanelText"
+                                       Text="SIDE PANEL"
+                                       Foreground="#FFFFFF"
+                                       TextAlignment="Center"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource FontStyle_1}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8" />
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+        <!--// Menu Base with Reset Control //-->
+
+        <Border x:Name="Menu_Base"
+                Width="210"
+                Height="60"
+                Background="#FF8C00"
+                CornerRadius="10"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="20,0,0,20">
+
+            <Border.RenderTransform>
+                <TranslateTransform X="0"
+                                    Y="80" />
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Menu_Base"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                                             From="80"
+                                             To="0"
+                                             BeginTime="0:0:0.4"
+                                             Duration="0:0:0.6">
+
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseIn" />
+                                </DoubleAnimation.EasingFunction>
+
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <!--// Reset Button Control //-->
+
+            <Button  x:Name="Reset_Control"
+                     Height="20"
+                     Width="60"
+                     VerticalAlignment="Bottom"
+                     HorizontalAlignment="Right"
+                     Margin="4,0,4,4"
+                     Style="{StaticResource ResetBtnStyle}"
+                     Click="Reset_Control_Click">
+
+                <Grid>
+
+                    <Image Source="{StaticResource Reset_01}"
+                           Height="10"
+                           Width="10"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,5,0" />
+
+                    <TextBlock Text="RESET"
+                               FontFamily="{StaticResource FontStyle_1}"
+                               FontSize="10"
+                               VerticalAlignment="Center"
+                               Foreground="#FFFFFF"
+                               HorizontalAlignment="Left"
+                               Margin="8,0,0,0" />
+
+                </Grid>
+
+            </Button>
+
+        </Border>
+
+        <!--// SideBar and SidePanel Container //-->
+
+        <Grid x:Name="Menu_Container"
+              Width="50"
+              HorizontalAlignment="Left"
+              Background="Transparent"
+              Margin="20,95,0,95">
+
+            <Grid.RenderTransform>
+                <TranslateTransform X="-80"
+                                    Y="0" />
+            </Grid.RenderTransform>
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+
+                            <DoubleAnimation Storyboard.TargetName="Menu_Container"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                             From="-80"
+                                             To="0"
+                                             BeginTime="0:0:1.2"
+                                             Duration="0:0:0.2" />
+
+                            <Storyboard>
+
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="SideBar_Active"
+                                                              Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                              BeginTime="0:0:8.5"
+                                                              Duration="0:0:1.4"
+                                                              FillBehavior="HoldEnd"
+                                                              RepeatBehavior="Forever">
+
+                                    <ColorAnimationUsingKeyFrames.KeyFrames>
+
+                                        <DiscreteColorKeyFrame KeyTime="0:0:0"
+                                                               Value="#FFFFFF" />
+
+                                        <DiscreteColorKeyFrame KeyTime="0:0:0.1"
+                                                               Value="#5B5B5B" />
+
+                                        <DiscreteColorKeyFrame KeyTime="0:0:0.25"
+                                                               Value="#FFFFFF" />
+
+                                        <DiscreteColorKeyFrame KeyTime="0:0:0.3"
+                                                               Value="#5B5B5B" />
+
+                                    </ColorAnimationUsingKeyFrames.KeyFrames>
+
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+
+            <!--// Menu Slide Out Panel //-->
+
+            <Border x:Name="Menu_Sliding_Panel"
+                    Background="#353535"
+                    BorderBrush="#FFFFFF"
+                    BorderThickness="0,0,0,5"
+                    CornerRadius="8"
+                    HorizontalAlignment="Stretch" />
+
+            <Grid>
+
+                <!--// Hamburger Toggle Button //-->
+
+                <ToggleButton x:Name="Menu_ToggleButton"
+                              Height="50"
+                              Width="50"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Top"
+                              Margin="0,0,0,0">
+
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ToggleButton">
+
+                                        <Border x:Name="border"
+                                                Margin="7"
+                                                CornerRadius="5"
+                                                Cursor="Hand">
+                                            <ContentPresenter />
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+
+                                            <Trigger Property="ToggleButton.IsMouseOver"
+                                                     Value="true">
+
+                                                <Setter Property="Background"
+                                                        TargetName="border"
+                                                        Value="#FF8C00" />
+
+                                            </Trigger>
+
+                                            <Trigger Property="ToggleButton.IsChecked"
+                                                     Value="true">
+
+                                                <Setter Property="Background"
+                                                        TargetName="border"
+                                                        Value="#FF8C00" />
+                                            </Trigger>
+
+                                        </ControlTemplate.Triggers>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ToggleButton.Style>
+
+                    <!--// Hamburger Menu Image //-->
+
+                    <Image Source="{StaticResource Hamburger_Image}"
+                           Stretch="None" />
+
+                    <ToggleButton.Resources>
+
+                        <!--// Menu Active / Inactive Status Indicator //-->
+
+                        <Storyboard x:Key="SideBar_Activated">
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="SideBar_Active"
+                                                          Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                          BeginTime="0:0:0"
+                                                          Duration="0:0:1.4"
+                                                          FillBehavior="HoldEnd"
+                                                          RepeatBehavior="Forever">
+
+                                <ColorAnimationUsingKeyFrames.KeyFrames>
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0"
+                                                           Value="#FFFFFF" />
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0.1"
+                                                           Value="#5B5B5B" />
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0.25"
+                                                           Value="#FFFFFF" />
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0.3"
+                                                           Value="#5B5B5B" />
+
+                                </ColorAnimationUsingKeyFrames.KeyFrames>
+
+                            </ColorAnimationUsingKeyFrames>
+
+                        </Storyboard>
+
+                        <Storyboard x:Key="SideBar_Deactivated">
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="SideBar_Active"
+                                                          Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                          FillBehavior="Stop" />
+
+                        </Storyboard>
+
+                        <Storyboard x:Key="SidePanel_Activated">
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="SidePanel_Active"
+                                                          Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                          BeginTime="0:0:0"
+                                                          Duration="0:0:1.4"
+                                                          FillBehavior="HoldEnd"
+                                                          RepeatBehavior="Forever">
+
+                                <ColorAnimationUsingKeyFrames.KeyFrames>
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0"
+                                                           Value="#FFFFFF" />
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0.1"
+                                                           Value="#5B5B5B" />
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0.25"
+                                                           Value="#FFFFFF" />
+
+                                    <DiscreteColorKeyFrame KeyTime="0:0:0.3"
+                                                           Value="#5B5B5B" />
+
+                                </ColorAnimationUsingKeyFrames.KeyFrames>
+
+                            </ColorAnimationUsingKeyFrames>
+
+                        </Storyboard>
+
+                        <Storyboard x:Key="SidePanel_Deactivated">
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="SidePanel_Active"
+                                                          Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                          FillBehavior="Stop" />
+
+                        </Storyboard>
+
+                    </ToggleButton.Resources>
+
+                    <ToggleButton.Triggers>
+
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="Menu_Container"
+                                                     Storyboard.TargetProperty="Width"
+                                                     From="50"
+                                                     To="210"
+                                                     DecelerationRatio="0.6"
+                                                     Duration="0:0:1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="Menu_Container"
+                                                     Storyboard.TargetProperty="Width"
+                                                     From="210"
+                                                     To="50"
+                                                     DecelerationRatio="0.9"
+                                                     Duration="0:0:1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+
+                            <BeginStoryboard Storyboard="{StaticResource SidePanel_Activated}" />
+                            <BeginStoryboard Storyboard="{StaticResource SideBar_Deactivated}" />
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+
+                            <BeginStoryboard Storyboard="{StaticResource SidePanel_Deactivated}" />
+                            <BeginStoryboard Storyboard="{StaticResource SideBar_Activated}" />
+
+                        </EventTrigger>
+
+                    </ToggleButton.Triggers>
+
+                </ToggleButton>
+
+                <!--// SidePanel Header //-->
+
+                <Border Height="32"
+                        Width="150"
+                        Background="#FFFFFF"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,9,52,0"
+                        CornerRadius="5">
+
+                    <Border Width="65"
+                            Background="#555555"
+                            HorizontalAlignment="Left"
+                            Margin="10,0,0,0"
+                            CornerRadius="5"
+                            BorderBrush="#353535"
+                            BorderThickness="0,3,0,3">
+
+                        <TextBlock Text="Menu"
+                                   FontFamily="{StaticResource FontStyle_1}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   Foreground="#FFFFFF" />
+                    </Border>
+
+                </Border>
+
+                <!--// Add SideBar UserControl //-->
+
+                <StackPanel x:Name="SideBar_Container"
+                            Margin="0,50,0,0"
+                            Panel.ZIndex="1">
+
+                    <local:SideBar />
+
+                </StackPanel>
+
+                <!--// Add SidePanel UserControl //-->
+
+                <StackPanel x:Name="SidePanel_Container"
+                            Margin="0,50,-50,0">
+
+                    <local:SidePanel x:Name="SidePanel_UC" />
+
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>

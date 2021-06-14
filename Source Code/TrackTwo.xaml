@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Hamburger_Menu.TrackTwo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Hamburger_Menu"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="100">
+
+    <UserControl.Resources>
+
+        <Storyboard x:Key="TrackTwo_Open">
+
+            <DoubleAnimation Storyboard.TargetName="T2_Open"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             BeginTime="0:0:0"
+                             Duration="0:0:0.1"
+                             AutoReverse="True"
+                             RepeatBehavior="3x">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="TrackTwo_Close">
+
+            <DoubleAnimation Storyboard.TargetName="T2_Close"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             BeginTime="0:0:0"
+                             Duration="0:0:0.1"
+                             AutoReverse="True"
+                             RepeatBehavior="3x">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+        </Storyboard>
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Border x:Name="SubmenuTwo_In_Out"
+                Width="35"
+                Background="#353535"
+                CornerRadius="0"
+                BorderBrush="#FFFFFF"
+                BorderThickness="0,5,0,5"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Right"
+                Margin="0,160,17,160">
+
+            <Grid>
+
+                <Image x:Name="T2_Open"
+                       Source="{StaticResource SMTR_1}"
+                       Stretch="None"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0,10,0,0" />
+
+                <Image x:Name="T2_Close"
+                       Source="{StaticResource SMTR_2}"
+                       Stretch="None"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,0,10" />
+
+                <TextBlock FontSize="12"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Height="230"
+                           Width="10"
+                           FontFamily="{StaticResource FontStyle_1}"
+                           Foreground="#FFFFFF"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,0">
+                    
+                    <Run Text="MENU" />
+                    <LineBreak />
+                    <LineBreak />
+                    <Run Text="TRACK - II" />
+
+                </TextBlock>
+
+                <Border Width="21"
+                        Background="#242424"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,40,-56,40"
+                        Panel.ZIndex="1"
+                        BorderBrush="#FFFFFF"
+                        BorderThickness="0,4,0,4" />
+            </Grid>
+
+            <Border.RenderTransform>
+                <TranslateTransform X="55"
+                                    Y="0" />
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="SubmenuTwo_In_Out"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                             From="55"
+                                             To="0"
+                                             BeginTime="0:0:2"
+                                             Duration="0:0:0.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+        </Border>
+
+    </Grid>
+
+</UserControl>

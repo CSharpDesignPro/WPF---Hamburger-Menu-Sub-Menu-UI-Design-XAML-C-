@@ -1,0 +1,244 @@
+﻿<UserControl x:Class="Hamburger_Menu.Channel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Hamburger_Menu"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="200">
+    
+    <Grid>
+
+        <Grid x:Name="Level3">
+
+            <Grid.RenderTransform>
+                <TranslateTransform X="450"
+                                    Y="0"></TranslateTransform>
+            </Grid.RenderTransform>
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Level3"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                             From="450"
+                                             To="0"
+                                             BeginTime="0:0:2.9"
+                                             Duration="0:0:0.2">
+
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+
+            <Border x:Name="h1"
+                    Background="#353535"
+                    Height="32"
+                    VerticalAlignment="Top"
+                    Margin="10,30,-40,0"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="5,0,0,0">
+
+                <Border.RenderTransform>
+                    <SkewTransform AngleX="-20" />
+                </Border.RenderTransform>
+
+                <TextBlock FontFamily="{StaticResource FontStyle_1}"
+                           FontSize="20"
+                           Foreground="#FFFFFF"
+                           TextAlignment="Center"
+                           Margin="15,0,0,0"
+                           HorizontalAlignment="Left"
+                           Text="C #"
+                           VerticalAlignment="Center">
+                </TextBlock>
+
+            </Border>
+
+            <Border x:Name="F3"
+                    Background="#353535"
+                    Height="32"
+                    VerticalAlignment="Bottom"
+                    Margin="10,0,-40,30"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="5,0,0,0">
+
+                <Border.RenderTransform>
+                    <SkewTransform AngleX="-20" />
+                </Border.RenderTransform>
+
+                <TextBlock FontFamily="{StaticResource FontStyle_1}"
+                           FontSize="20"
+                           Foreground="#FFFFFF"
+                           TextAlignment="Center"
+                           Margin="15,0,0,0"
+                           HorizontalAlignment="Left"
+                           Text="I N T E R F A C E"
+                           VerticalAlignment="Center" />
+            </Border>
+
+        </Grid>
+
+        <Grid x:Name="Level2">
+
+            <Grid.RenderTransform>
+                <TranslateTransform X="450"
+                                    Y="0"></TranslateTransform>
+            </Grid.RenderTransform>
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Level2"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                             From="450"
+                                             To="0"
+                                             BeginTime="0:0:2.65"
+                                             Duration="0:0:0.25">
+
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+
+            <Border x:Name="h2"
+                    Background="#353535"
+                    Height="32"
+                    VerticalAlignment="Top"
+                    Margin="30,70,-40,0"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="5,0,0,0">
+
+
+                <Border.RenderTransform>
+                    <SkewTransform AngleX="-20" />
+                </Border.RenderTransform>
+
+                <TextBlock FontFamily="{StaticResource FontStyle_1}"
+                           FontSize="20"
+                           Foreground="#FFFFFF"
+                           TextAlignment="Center"
+                           Margin="15,0,0,0"
+                           HorizontalAlignment="Left"
+                           Text="D E S I G N"
+                           VerticalAlignment="Center" />
+
+            </Border>
+
+            <Border x:Name="F2"
+                    Background="#353535"
+                    Height="32"
+                    VerticalAlignment="Bottom"
+                    Margin="50,0,-40,70"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="5,0,0,0">
+
+
+                <Border.RenderTransform>
+                    <SkewTransform AngleX="-20" />
+                </Border.RenderTransform>
+
+                <TextBlock FontFamily="{StaticResource FontStyle_1}"
+                           FontSize="20"
+                           Foreground="#FFFFFF"
+                           TextAlignment="Center"
+                           Margin="15,0,0,0"
+                           HorizontalAlignment="Left"
+                           Text="T H E"
+                           VerticalAlignment="Center" />
+
+            </Border>
+
+        </Grid>
+
+        <Grid x:Name="Level1">
+
+            <Grid.RenderTransform>
+                <TranslateTransform X="450"
+                                    Y="0"></TranslateTransform>
+            </Grid.RenderTransform>
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Level1"
+                                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                             From="450"
+                                             To="0"
+                                             BeginTime="0:0:2.4"
+                                             Duration="0:0:0.3">
+
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+
+            <Border x:Name="h3"
+                    Background="#353535"
+                    Height="32"
+                    VerticalAlignment="Top"
+                    Margin="50,110,-40,0"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="5,0,0,0">
+
+                <Border.RenderTransform>
+                    <SkewTransform AngleX="-20" />
+                </Border.RenderTransform>
+
+                <TextBlock FontFamily="{StaticResource FontStyle_1}"
+                           FontSize="20"
+                           Foreground="#FFFFFF"
+                           TextAlignment="Center"
+                           Margin="15,0,0,0"
+                           HorizontalAlignment="Left"
+                           Text="P R O"
+                           VerticalAlignment="Center" />
+
+            </Border>
+
+            <Border x:Name="F1"
+                    Background="#353535"
+                    Height="32"
+                    VerticalAlignment="Bottom"
+                    Margin="90,0,-40,110"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="5,0,0,0">
+
+                <Border.RenderTransform>
+                    <SkewTransform AngleX="-20" />
+                </Border.RenderTransform>
+
+                <TextBlock FontFamily="{StaticResource FontStyle_1}"
+                           FontSize="20"
+                           Foreground="#FFFFFF"
+                           TextAlignment="Center"
+                           Margin="15,0,0,0"
+                           HorizontalAlignment="Left"
+                           Text="D E S I G N"
+                           VerticalAlignment="Center" />
+
+            </Border>
+        </Grid>
+
+    </Grid>
+    
+</UserControl>

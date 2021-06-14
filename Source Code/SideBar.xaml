@@ -1,0 +1,326 @@
+﻿<UserControl x:Class="Hamburger_Menu.SideBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Hamburger_Menu"
+             mc:Ignorable="d"
+             d:DesignHeight="200"
+             d:DesignWidth="200">
+
+    <UserControl.Resources>
+
+        <!--// SideBar ToggleButton Style Template //-->
+
+        <Style x:Key="SideBarStyle"
+               TargetType="ToggleButton">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+
+                        <Border x:Name="border"
+                                Height="40"
+                                Width="50"
+                                Background="#333333"
+                                HorizontalAlignment="Right"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="ToggleButton.IsMouseOver"
+                                     Value="true">
+
+                                <Setter Property="Background"
+                                        TargetName="border">
+                                    <Setter.Value>
+
+                                        <LinearGradientBrush StartPoint="0,0.5"
+                                                             EndPoint="0.05,0.5">
+                                            <GradientStop Color="#FFFFFF"
+                                                          Offset="1" />
+                                            <GradientStop Color="#333333"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+
+                            <Trigger Property="ToggleButton.IsChecked"
+                                     Value="true">
+
+                                <Setter Property="Background"
+                                        TargetName="border">
+
+                                    <Setter.Value>
+
+                                        <LinearGradientBrush StartPoint="0,0.5"
+                                                             EndPoint="0.05,0.5">
+
+                                            <GradientStop Color="#FF8C00"
+                                                          Offset="1" />
+
+                                            <GradientStop Color="#333333"
+                                                          Offset="1" />
+
+                                        </LinearGradientBrush>
+
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--// ListBoxItem Style //-->
+
+        <Style x:Key="SideBarListBoxItemStyle"
+               TargetType="ListBoxItem">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+
+                        <ToggleButton IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}}"
+                                      Style="{StaticResource SideBarStyle}">
+
+                            <Image Source="{TemplateBinding Image.Source}"
+                                   Stretch="None" />
+
+                        </ToggleButton>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+    </UserControl.Resources>
+
+    <!--// Set UserControl Visibility //-->
+
+    <UserControl.Style>
+
+        <Style TargetType="UserControl">
+
+            <Setter Property="Visibility"
+                    Value="Visible" />
+
+            <Style.Triggers>
+
+                <DataTrigger Binding="{Binding IsChecked, ElementName=Menu_ToggleButton}"
+                             Value="True">
+
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+
+                </DataTrigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+    </UserControl.Style>
+
+    <Grid>
+
+        <StackPanel>
+
+            <StackPanel x:Name="SideBar_SP"
+                        Background="Transparent"
+                        Height="200"
+                        VerticalAlignment="Top"
+                        Width="50"
+                        HorizontalAlignment="Right">
+
+                <StackPanel.Resources>
+
+                    <Style x:Key="Popup_Style"
+                           TargetType="Popup">
+                        <Setter Property="Placement"
+                                Value="Right" />
+                        <Setter Property="HorizontalOffset"
+                                Value="10" />
+                        <Setter Property="VerticalOffset"
+                                Value="4" />
+                        <Setter Property="AllowsTransparency"
+                                Value="True" />
+                        <Setter Property="PopupAnimation"
+                                Value="Fade" />
+                    </Style>
+
+                </StackPanel.Resources>
+
+                <ListBox Height="200">
+
+                    <ListBox.Resources>
+
+                        <Style TargetType="ListBox">
+                            <Setter Property="VerticalAlignment"
+                                    Value="Top" />
+                            <Setter Property="SelectionMode"
+                                    Value="Single" />
+                            <Setter Property="Cursor"
+                                    Value="Hand" />
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Border Background="Transparent"
+                                                SnapsToDevicePixels="True">
+                                            <ScrollViewer Focusable="False"
+                                                          HorizontalScrollBarVisibility="Disabled"
+                                                          VerticalScrollBarVisibility="Disabled">
+                                                <ItemsPresenter />
+                                            </ScrollViewer>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                    </ListBox.Resources>
+
+                    <!--// Dashboard //-->
+
+                    <ListBoxItem x:Name="SideBar_Dashboard_ListBoxItem">
+                        <ListBoxItem.Style>
+                            <Style TargetType="ListBoxItem"
+                                   BasedOn="{StaticResource SideBarListBoxItemStyle}">
+                                <Setter Property="Image.Source"
+                                        Value="{StaticResource Dashboard_S3}" />
+                            </Style>
+                        </ListBoxItem.Style>
+                    </ListBoxItem>
+
+                    <!--// Mail //-->
+
+                    <ListBoxItem x:Name="SideBar_Mail_ListBoxItem">
+                        <ListBoxItem.Style>
+                            <Style TargetType="ListBoxItem"
+                                   BasedOn="{StaticResource SideBarListBoxItemStyle}">
+                                <Setter Property="Image.Source"
+                                        Value="{StaticResource Mail_S3}" />
+                            </Style>
+                        </ListBoxItem.Style>
+                    </ListBoxItem>
+
+                    <!--// Customer //-->
+
+                    <ListBoxItem x:Name="SideBar_Customer_ListBoxItem">
+                        <ListBoxItem.Style>
+                            <Style TargetType="ListBoxItem"
+                                   BasedOn="{StaticResource SideBarListBoxItemStyle}">
+                                <Setter Property="Image.Source"
+                                        Value="{StaticResource Customer_S3}" />
+                            </Style>
+                        </ListBoxItem.Style>
+                    </ListBoxItem>
+
+                    <!--// Analytics //-->
+
+                    <ListBoxItem x:Name="SideBar_Analytics_ListBoxItem">
+                        <ListBoxItem.Style>
+                            <Style TargetType="ListBoxItem"
+                                   BasedOn="{StaticResource SideBarListBoxItemStyle}">
+                                <Setter Property="Image.Source"
+                                        Value="{StaticResource Analytics_S3}" />
+                            </Style>
+                        </ListBoxItem.Style>
+                    </ListBoxItem>
+
+                    <!--// Settings //-->
+
+                    <ListBoxItem x:Name="SideBar_Settings_ListBoxItem">
+                        <ListBoxItem.Style>
+                            <Style TargetType="ListBoxItem"
+                                   BasedOn="{StaticResource SideBarListBoxItemStyle}">
+                                <Setter Property="Image.Source"
+                                        Value="{StaticResource Settings_S3}" />
+                            </Style>
+                        </ListBoxItem.Style>
+                    </ListBoxItem>
+
+                </ListBox>
+
+                <!--// Dashboard Tooltip //-->
+
+                <Popup x:Name="dashboard_tt"
+                       IsOpen="{Binding ElementName=SideBar_Dashboard_ListBoxItem, Path=IsMouseOver, Mode=OneWay}"
+                       PlacementTarget="{Binding ElementName=SideBar_Dashboard_ListBoxItem}"
+                       Style="{StaticResource Popup_Style}">
+
+                    <Image Source="{StaticResource Dashboard_T}"
+                           Stretch="None"
+                           HorizontalAlignment="Left" />
+
+                </Popup>
+
+                <!--// Mail Tooltip //-->
+
+                <Popup x:Name="mail_tt"
+                       IsOpen="{Binding ElementName=SideBar_Mail_ListBoxItem, Path=IsMouseOver, Mode=OneWay}"
+                       PlacementTarget="{Binding ElementName=SideBar_Mail_ListBoxItem}"
+                       Style="{StaticResource Popup_Style}">
+
+                    <Image Source="{StaticResource Mail_T}"
+                           Stretch="None"
+                           HorizontalAlignment="Left" />
+
+                </Popup>
+
+                <!--// Customer Tooltip //-->
+
+                <Popup x:Name="customer_tt"
+                       IsOpen="{Binding ElementName=SideBar_Customer_ListBoxItem, Path=IsMouseOver, Mode=OneWay}"
+                       PlacementTarget="{Binding ElementName=SideBar_Customer_ListBoxItem}"
+                       Style="{StaticResource Popup_Style}">
+
+                    <Image Source="{StaticResource Customer_T}"
+                           Stretch="None"
+                           HorizontalAlignment="Left" />
+
+                </Popup>
+
+                <!--// Analytics Tooltip //-->
+
+                <Popup x:Name="analytics_tt"
+                       IsOpen="{Binding ElementName=SideBar_Analytics_ListBoxItem, Path=IsMouseOver, Mode=OneWay}"
+                       PlacementTarget="{Binding ElementName=SideBar_Analytics_ListBoxItem}"
+                       Style="{StaticResource Popup_Style}">
+
+                    <Image Source="{StaticResource Analytics_T}"
+                           Stretch="None"
+                           HorizontalAlignment="Left" />
+
+                </Popup>
+
+                <!--// Settings Tooltip //-->
+
+                <Popup x:Name="settings_tt"
+                       IsOpen="{Binding ElementName=SideBar_Settings_ListBoxItem, Path=IsMouseOver, Mode=OneWay}"
+                       PlacementTarget="{Binding ElementName=SideBar_Settings_ListBoxItem}"
+                       Style="{StaticResource Popup_Style}">
+
+                    <Image Source="{StaticResource Settings_T}"
+                           Stretch="None"
+                           HorizontalAlignment="Left" />
+
+                </Popup>
+
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+    
+</UserControl>
