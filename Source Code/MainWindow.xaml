@@ -1,0 +1,277 @@
+    
+<!--/// <Summary>
+    /// Author : R. Arun Mutharasu
+    /// Created : 15-06-2021
+    /// YouTube Channel : C# Design Pro 
+    /// </Summary>-->
+
+<Window x:Class="Hamburger_Menu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hamburger_Menu"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="700"
+        Width="980"
+        Background="#242424"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        IsEnabled="False">
+
+    <Window.Resources>
+
+        <!--// SubmenuOne Vertical Slide-In Animation //-->
+
+        <Storyboard x:Key="SubmenuOne_Enter">
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuOne_UC}"
+                             Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.Y)"
+                             From="{Binding ElementName=SubmenuOne_Container, Path=ActualHeight}"
+                             Duration="0:0:0.8"
+                             AccelerationRatio="0.9"
+                             FillBehavior="HoldEnd">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuOne_UC}"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1" />
+
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.Target="{Binding ElementName=SubmenuOne_UC}"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+
+                <DiscreteObjectKeyFrame KeyTime="00:00:00"
+                                        Value="{x:Static Visibility.Visible}" />
+
+
+            </ObjectAnimationUsingKeyFrames>
+
+        </Storyboard>
+
+        <!--// SubmenuOne Vertical Slide-Out Animation //-->
+
+        <Storyboard x:Key="SubmenuOne_Exit">
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuOne_UC}"
+                             Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.Y)"
+                             To="-650"
+                             Duration="0:0:1.5"
+                             AccelerationRatio="0.9"
+                             FillBehavior="HoldEnd">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuOne_UC}"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0" />
+
+        </Storyboard>
+
+        <!--// SubmenuTwo Horizontal Slide-In Animation //-->
+
+        <Storyboard x:Key="SubmenuTwo_Enter">
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuTwo_UC}"
+                             Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"
+                             From="{Binding ElementName=SubmenuTwo_Container, Path=ActualWidth}"
+                             Duration="0:0:1"
+                             FillBehavior="HoldEnd">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuTwo_UC}"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1" />
+
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.Target="{Binding ElementName=SubmenuTwo_UC}"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+
+                <DiscreteObjectKeyFrame KeyTime="00:00:00"
+                                        Value="{x:Static Visibility.Visible}" />
+
+            </ObjectAnimationUsingKeyFrames>
+
+        </Storyboard>
+
+        <!--// SubmenuTwo Horizontal Slide-Out Animation //-->
+
+        <Storyboard x:Key="SubmenuTwo_Exit">
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuTwo_UC}"
+                             Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"
+                             To="{Binding ElementName=SubmenuTwo_Container, Path=ActualWidth}"
+                             Duration="0:0:1"
+                             AccelerationRatio="0.4"
+                             FillBehavior="HoldEnd" />
+
+            <DoubleAnimation Storyboard.Target="{Binding ElementName=SubmenuTwo_UC}"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0" />
+
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:1"
+                                           Storyboard.Target="{Binding ElementName=SubmenuTwo_UC}"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+
+                <DiscreteObjectKeyFrame KeyTime="00:00:1"
+                                        Value="{x:Static Visibility.Collapsed}" />
+
+            </ObjectAnimationUsingKeyFrames>
+
+        </Storyboard>
+
+        <!--// Channel Logo //-->
+
+        <Storyboard x:Key="LogoAnimation">
+
+            <ObjectAnimationUsingKeyFrames BeginTime="0:0:3.8"
+                                           Storyboard.TargetName="Logo"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00"
+                                        Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimation Storyboard.TargetName="Logo"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1"
+                             BeginTime="0:0:3.8"
+                             Duration="0:0:2"
+                             RepeatBehavior="1x"
+                             AutoReverse="True"
+                             Completed="EnableMainWindow">
+
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+
+        </Storyboard>
+
+    </Window.Resources>
+
+    <Grid x:Name="Main_Window_Panel"
+          Background="Transparent"
+          MouseDown="Main_Window_Panel_MouseDown">
+
+        <!--// Background Border //-->
+
+        <Border Background="#242424"
+                Panel.ZIndex="0">
+
+            <Image x:Name="Logo"
+                   Source="{StaticResource Logo_1}"
+                   Visibility="Collapsed"
+                   Stretch="None"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,20">
+
+                <Image.Triggers>
+
+                    <EventTrigger RoutedEvent="Image.Loaded">
+                        <BeginStoryboard Storyboard="{StaticResource LogoAnimation}" />
+                    </EventTrigger>
+
+                </Image.Triggers>
+
+            </Image>
+
+        </Border>
+
+        <!--// Add MainMenu UserControl //-->
+
+        <local:MainMenu x:Name="MainMenu_UC" />
+
+        <!--// Add TrackOne UserControl //-->
+
+        <local:TrackOne x:Name="Track_One"
+                        Panel.ZIndex="1" />
+
+        <!--// Add SubmenuOne UserControl //-->
+
+        <Canvas x:Name="SubmenuOne_Container"
+                Margin="292,0,0,0"
+                Background="Transparent">
+
+            <local:SubmenuOne x:Name="SubmenuOne_UC"
+                              Visibility="Collapsed"
+                              Panel.ZIndex="0">
+
+                <local:SubmenuOne.RenderTransform>
+                    <TranslateTransform X="0"
+                                        Y="0" />
+                </local:SubmenuOne.RenderTransform>
+
+            </local:SubmenuOne>
+
+        </Canvas>
+
+        <!--// Add SubmenuTwo UserControl //-->
+
+        <Canvas x:Name="SubmenuTwo_Container"
+                Margin="556,0,0,0"
+                Panel.ZIndex="1"
+                Background="Transparent">
+
+            <local:SubmenuTwo x:Name="SubmenuTwo_UC"
+                              Visibility="Collapsed"
+                              Panel.ZIndex="1">
+
+                <local:SubmenuTwo.RenderTransform>
+                    <TranslateTransform X="0"
+                                        Y="0" />
+                </local:SubmenuTwo.RenderTransform>
+
+            </local:SubmenuTwo>
+
+        </Canvas>
+
+        <!--// Add TrackTwo UserControl //-->
+
+        <local:TrackTwo x:Name="Track_Two"
+                        Panel.ZIndex="2" />
+
+        <!--// Add Channel UserControl //-->
+
+        <local:Channel Margin="600,0,0,0"
+                       Background="Transparent"
+                       Panel.ZIndex="0" />
+
+        <!--// Top, Bottom Border Design //-->
+
+        <Border x:Name="Window_Edge"
+                HorizontalAlignment="Stretch"
+                BorderBrush="White"
+                BorderThickness="0,4,0,4"
+                Panel.ZIndex="1" />
+
+        <!--// Add AppControl UserControl //-->
+
+        <local:AppControl Panel.ZIndex="3" />
+
+    </Grid>
+
+</Window>
